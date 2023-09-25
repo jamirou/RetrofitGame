@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.jamirodev.retrofitgameapp.components.MainImage
 import com.jamirodev.retrofitgameapp.components.MainTopBar
+import com.jamirodev.retrofitgameapp.components.MetaWebsite
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_3
 import com.jamirodev.retrofitgameapp.viewModel.GamesViewModel
@@ -55,7 +56,7 @@ fun ContentDetailView(pad: PaddingValues, viewModel: GamesViewModel) {
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 5.dp)
         ) {
-
+            MetaWebsite(url = state.website)
         }
     }
 }
