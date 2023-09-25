@@ -30,6 +30,7 @@ import com.jamirodev.retrofitgameapp.model.GameList
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_2
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_3
+import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_5
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
