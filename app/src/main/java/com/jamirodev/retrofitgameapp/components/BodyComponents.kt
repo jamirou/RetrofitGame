@@ -15,6 +15,7 @@ import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -36,7 +38,7 @@ import com.jamirodev.retrofitgameapp.model.GameList
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_2
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_3
-import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_5
+import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_4
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,23 +98,48 @@ fun MetaWebsite(url: String) {
     val context = LocalContext.current
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
     Column {
-        Text(text = "METASCORE",
+        Text(
+            text = "METASCORE",
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             modifier = Modifier
                 .padding(top = 10.dp, bottom = 10.dp)
         )
-        Button(onClick = { context.startActivity(intent) }, colors = ButtonDefaults.buttonColors(
-            contentColor = Color.White,
-            containerColor = Color(COLOR_2)
-        )) {
+        Button(
+            onClick = { context.startActivity(intent) }, colors = ButtonDefaults.buttonColors(
+                contentColor = Color.White,
+                containerColor = Color(COLOR_2)
+            )
+        ) {
             Text(text = "Website")
         }
     }
 }
 
-
+@Composable
+fun ReviewCard(metaScore: Int) {
+    Card(
+        modifier = Modifier
+            .padding(16.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(COLOR_3)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = metaScore.toString(),
+                color = Color.White,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 50.sp
+            )
+        }
+    }
+}
 
 
 
