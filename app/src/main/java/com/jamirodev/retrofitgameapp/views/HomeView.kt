@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.jamirodev.retrofitgameapp.components.CardGame
 import com.jamirodev.retrofitgameapp.components.MainTopBar
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
@@ -24,18 +25,18 @@ import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_5
 import com.jamirodev.retrofitgameapp.viewModel.GamesViewModel
 
 @Composable
-fun HomeView(viewModel: GamesViewModel) {
+fun HomeView(viewModel: GamesViewModel, navController: NavController) {
     Scaffold(
         topBar = {
             MainTopBar(title = "GAMES") {}
         }
     ) {
-        ContentHomeView(viewModel = viewModel, pad = it)
+        ContentHomeView(viewModel = viewModel, pad = it, navController)
     }
 }
 
 @Composable
-fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues) {
+fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController: NavController) {
     val games by viewModel.games.collectAsState()
     LazyColumn(
         modifier = Modifier.padding(pad)
@@ -43,7 +44,7 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues) {
     ) {
         items(games) { item ->
             CardGame(item) {
-                ///next view
+                navController.navigate("DetailView/${item.id}")
             }
             Text(text = item.name,
                 fontWeight = FontWeight.ExtraBold,
