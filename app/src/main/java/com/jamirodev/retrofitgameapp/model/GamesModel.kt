@@ -3,7 +3,6 @@ package com.jamirodev.retrofitgameapp.model
 data class GamesModel(
     val count: Int,
     val results: List<GameList>
-
 )
 
 data class GameList(
