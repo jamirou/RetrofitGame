@@ -15,6 +15,3 @@ class Constants {
 
     }
 }
-
-// https://api.rawg.io/api/games?key=376ac9acebc34c6298778cdb7531cfc4
-// https://api.rawg.io/api/games/id?key=376ac9acebc34c6298778cdb7531cfc4

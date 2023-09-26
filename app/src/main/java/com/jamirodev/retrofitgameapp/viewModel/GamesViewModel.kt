@@ -58,7 +58,7 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
             name =  "",
             description_raw =  "",
             metacritic = 666,
-            website = "no web",
+            website = "",
             background_image =  "",
         )
     }

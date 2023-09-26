@@ -1,6 +1,9 @@
 package com.jamirodev.retrofitgameapp.navigation
 
+import android.content.res.Resources.Theme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +15,7 @@ import com.jamirodev.retrofitgameapp.views.HomeView
 import com.jamirodev.retrofitgameapp.views.SearchGameView
 
 @Composable
-fun NavManager(viewModel: GamesViewModel) {
+fun NavManager(viewModel: GamesViewModel){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Home") {
         composable("Home") {
