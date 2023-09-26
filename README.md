@@ -1,8 +1,5 @@
 # Apigames - Aplicación Android con Jetpack Compose y Kotlin
 
-<img src="https://github.com/jamirou/Personal_Schedule/assets/48457084/09cd01ba-a680-49ce-9959-2b015beacb49" height="550" />
-
-
 ## Descripción del Proyecto
 Apigames es una aplicación Android que utiliza Jetpack Compose y Kotlin para mostrar información sobre videojuegos utilizando una API externa. La aplicación se centra en las siguientes características clave:
 
@@ -12,6 +9,9 @@ Apigames es una aplicación Android que utiliza Jetpack Compose y Kotlin para mo
 - Arquitectura limpia (Clean Architecture).
 - Uso de Coil para la carga eficiente de imágenes desde el servidor.
 - Utilización de la navegación con Jetpack Compose.
+
+<img src="https://github.com/jamirou/Personal_Schedule/assets/48457084/09cd01ba-a680-49ce-9959-2b015beacb49" height="550" />
+  
 
 ## Estructura del Proyecto
 La aplicación sigue una estructura de paquetes organizada de la siguiente manera:
