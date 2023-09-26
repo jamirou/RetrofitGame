@@ -28,7 +28,9 @@ import com.jamirodev.retrofitgameapp.viewModel.GamesViewModel
 fun HomeView(viewModel: GamesViewModel, navController: NavController) {
     Scaffold(
         topBar = {
-            MainTopBar(title = "GAMES") {}
+            MainTopBar(title = "GAMES", onClickBackButton = {  }) {
+                navController.navigate("SearchGameView")
+            }
         }
     ) {
         ContentHomeView(viewModel = viewModel, pad = it, navController)
@@ -39,7 +41,8 @@ fun HomeView(viewModel: GamesViewModel, navController: NavController) {
 fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController: NavController) {
     val games by viewModel.games.collectAsState()
     LazyColumn(
-        modifier = Modifier.padding(pad)
+        modifier = Modifier
+            .padding(pad)
             .background(Color(COLOR_1))
     ) {
         items(games) { item ->

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -42,7 +43,7 @@ import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_4
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton: () -> Unit) {
+fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton: () -> Unit, onClickAction: () -> Unit) {
 
     TopAppBar(
         title = { Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold) },
@@ -55,6 +56,18 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton
                     Icon(
                         imageVector =
                         Icons.Default.ArrowBack,
+                        contentDescription = "Go back button",
+                        tint = Color(COLOR_2)
+                    )
+                }
+            }
+        },
+        actions = {
+            if (!showBackButton) {
+                IconButton(onClick = { onClickAction() }) {
+                    Icon(
+                        imageVector =
+                        Icons.Default.Search,
                         contentDescription = "Go back button",
                         tint = Color(COLOR_2)
                     )

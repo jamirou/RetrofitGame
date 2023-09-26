@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -40,12 +41,14 @@ fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int)
             viewModel.clean()
         }
     }
-    
+
     Scaffold(
         topBar = {
-            MainTopBar(title = viewModel.state.name, showBackButton = true) {
-                navController.popBackStack()
-            }
+            MainTopBar(
+                title = viewModel.state.name,
+                showBackButton = true,
+                onClickBackButton = { navController.popBackStack() }
+            ) {}
         }
     ) {
         ContentDetailView(it, viewModel)
@@ -81,6 +84,7 @@ fun ContentDetailView(pad: PaddingValues, viewModel: GamesViewModel) {
                 .padding(start = 15.dp, end = 15.dp, bottom = 10.dp)
                 .verticalScroll(scroll)
         )
+
     }
 }
 
