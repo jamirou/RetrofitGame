@@ -31,9 +31,13 @@ import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_3
 import com.jamirodev.retrofitgameapp.viewModel.GamesViewModel
 
 @Composable
-fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int) {
+fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int, name:String?) {
     LaunchedEffect(Unit) {
-        viewModel.getGameById(id)
+        if (id == 0) {
+            name?.let { viewModel.getGameByName(it.replace(" ", "-")) }
+        } else{
+            viewModel.getGameById(id)
+        }
     }
 
     DisposableEffect(Unit) {
