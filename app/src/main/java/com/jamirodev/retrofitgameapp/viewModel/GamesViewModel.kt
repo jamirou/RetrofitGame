@@ -51,6 +51,19 @@ class GamesViewModel @Inject constructor(private val repository: GamesRepository
                 )
             }
         }
+    }    fun getGameByName(name: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val result = repository.getGameByName(name)
+                state = state.copy(
+                    name = result?.name ?: "",
+                    description_raw = result?.description_raw ?: "",
+                    metacritic = result?.metacritic ?: 666,
+                    website = result?.website ?: "no web",
+                    background_image = result?.background_image ?: "",
+                )
+            }
+        }
     }
 
     fun clean() {

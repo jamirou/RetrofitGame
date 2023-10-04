@@ -18,10 +18,7 @@ import androidx.navigation.NavController
 import com.jamirodev.retrofitgameapp.components.CardGame
 import com.jamirodev.retrofitgameapp.components.MainTopBar
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
-import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_2
-import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_3
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_4
-import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_5
 import com.jamirodev.retrofitgameapp.viewModel.GamesViewModel
 
 @Composable
