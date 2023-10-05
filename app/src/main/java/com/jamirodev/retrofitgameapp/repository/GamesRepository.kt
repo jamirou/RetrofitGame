@@ -2,6 +2,7 @@ package com.jamirodev.retrofitgameapp.repository
 
 import com.jamirodev.retrofitgameapp.data.ApiGame
 import com.jamirodev.retrofitgameapp.model.GameList
+import com.jamirodev.retrofitgameapp.model.GamesModel
 import com.jamirodev.retrofitgameapp.model.SingleGameModel
 import javax.inject.Inject
 
@@ -13,6 +14,9 @@ class GamesRepository @Inject constructor(private val apiGame: ApiGame) {
             return response.body()?.results
         }
         return null
+    }
+    suspend fun getGamesPaging(page: Int, pageSize: Int): GamesModel {
+        return apiGame.getGamesPaging(page, pageSize)
     }
 
     suspend fun getGameById(id: Int): SingleGameModel? {
