@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.jamirodev.retrofitgameapp.components.CardGame
 import com.jamirodev.retrofitgameapp.components.MainTopBar
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
@@ -47,7 +48,8 @@ fun HomeView(viewModel: GamesViewModel, navController: NavController) {
 
 @Composable
 fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController: NavController) {
-    val games by viewModel.games.collectAsState()
+    //val games by viewModel.games.collectAsState()
+    val gamesPage = viewModel.gamesPage.collectAsLazyPagingItems()
     var search by remember { mutableStateOf("") }
 
     Column(
@@ -79,16 +81,19 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController
             modifier = Modifier
                 .background(Color(COLOR_1))
         ) {
-            items(games) { item ->
-                CardGame(item) {
-                    navController.navigate("DetailView/${item.id}/?${search}")
+            items(gamesPage.itemCount) { index ->
+                val item = gamesPage[index]
+                if (item != null) {
+                    CardGame(item) {
+                        navController.navigate("DetailView/${item.id}/?${search}")
+                    }
+                    Text(
+                        text = item.name,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color(COLOR_4),
+                        modifier = Modifier.padding(start = 10.dp)
+                    )
                 }
-                Text(
-                    text = item.name,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color(COLOR_4),
-                    modifier = Modifier.padding(start = 10.dp)
-                )
             }
         }
     }

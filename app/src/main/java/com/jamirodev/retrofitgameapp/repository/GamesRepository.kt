@@ -4,6 +4,7 @@ import com.jamirodev.retrofitgameapp.data.ApiGame
 import com.jamirodev.retrofitgameapp.model.GameList
 import com.jamirodev.retrofitgameapp.model.GamesModel
 import com.jamirodev.retrofitgameapp.model.SingleGameModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GamesRepository @Inject constructor(private val apiGame: ApiGame) {
@@ -16,6 +17,7 @@ class GamesRepository @Inject constructor(private val apiGame: ApiGame) {
         return null
     }
     suspend fun getGamesPaging(page: Int, pageSize: Int): GamesModel {
+        delay(3000L)
         return apiGame.getGamesPaging(page, pageSize)
     }
 
