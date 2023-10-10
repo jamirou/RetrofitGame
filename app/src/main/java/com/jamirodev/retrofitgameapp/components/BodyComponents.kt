@@ -2,12 +2,20 @@ package com.jamirodev.retrofitgameapp.components
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -17,16 +25,21 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -43,7 +56,12 @@ import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_4
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton: () -> Unit, onClickAction: () -> Unit) {
+fun MainTopBar(
+    title: String,
+    showBackButton: Boolean = false,
+    onClickBackButton: () -> Unit,
+    onClickAction: () -> Unit
+) {
 
     TopAppBar(
         title = { Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold) },
@@ -154,6 +172,43 @@ fun ReviewCard(metaScore: Int) {
     }
 }
 
+@Composable
+fun Loader() {
+    val circleColors: List<Color> = listOf(
+        Color(0xFF5851D8),
+        Color(0xFFA21948),
+        Color(0xFFCDDC39),
+        Color(0xFF4CAF50),
+        Color(0xFFF44336),
+        Color(0xFF009688),
+        Color(0xFF00BCD4)
+    )
+    val infiniteTransition = rememberInfiniteTransition(label = "")
+    val rotateAnimation by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 360,
+                easing = LinearEasing
+            )
+        ), label = ""
+    )
+    CircularProgressIndicator(
+        modifier = Modifier
+            .size(size = 100.dp)
+            .rotate(degrees = rotateAnimation)
+            .border(
+                width = 4.dp,
+                brush = Brush.sweepGradient(circleColors),
+                shape = CircleShape
+            ),
+        progress = 1f,
+        strokeWidth = 1.dp,
+        color = MaterialTheme.colorScheme.background
+    )
+
+}
 
 
 

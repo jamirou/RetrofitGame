@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jamirodev.retrofitgameapp.components.CardGame
+import com.jamirodev.retrofitgameapp.components.Loader
 import com.jamirodev.retrofitgameapp.components.MainTopBar
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_1
 import com.jamirodev.retrofitgameapp.util.Constants.Companion.COLOR_4
@@ -76,6 +77,7 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp)
         )
+        Loader()
 
         LazyColumn(
             modifier = Modifier
