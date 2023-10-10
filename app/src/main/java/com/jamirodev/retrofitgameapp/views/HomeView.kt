@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.jamirodev.retrofitgameapp.components.CardGame
 import com.jamirodev.retrofitgameapp.components.Loader
@@ -77,8 +78,6 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp)
         )
-        Loader()
-
         LazyColumn(
             modifier = Modifier
                 .background(Color(COLOR_1))
@@ -95,6 +94,26 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController
                         color = Color(COLOR_4),
                         modifier = Modifier.padding(start = 10.dp)
                     )
+                }
+            }
+            when(gamesPage.loadState.append){
+                is LoadState.NotLoading -> Unit
+                LoadState.Loading -> {
+                    item {
+                        Column(
+                            modifier = Modifier
+                                .fillParentMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Loader()
+                        }
+                    }
+                }
+                is LoadState.Error -> {
+                    item {
+                        Text(text = "Load Error")
+                    }
                 }
             }
         }
